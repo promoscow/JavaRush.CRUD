@@ -80,4 +80,10 @@ public class UserController {
         model.addAttribute("user", this.userService.getUserById(id));
         return "userdata";
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index(Model model) {
+        model.addAttribute("user", new User());
+        return "index";
+    }
 }
