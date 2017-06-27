@@ -25,9 +25,24 @@
         .tg td {
             font-family: Arial, sans-serif;
             font-size: 14px;
-            padding: 10px 5px;
+            font-weight: lighter;
+            padding: 20px 15px;
             border-style: solid;
-            border-width: 1px;
+            border-width: 0;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #777;
+            background-color: #fff;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 30px 15px;
+            border-style: solid;
+            border-width: 0;
             overflow: hidden;
             word-break: normal;
             border-color: #ccc;
@@ -35,108 +50,209 @@
             background-color: #fff;
         }
 
-        .tg th {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: lighter;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
-            color: #333;
-            background-color: #f0f0f0;
-        }
-
         .tg .tg-4eph {
             background-color: #f9f9f9
         }
+
+        .header {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            font-weight: lighter;
+            padding: 10px 5px;
+            border-width: 0px;
+            align-content: center;
+            align-items: center;
+        }
+
+        .form {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: lighter;
+            padding: 10px 15px;
+            border-width: 0;
+            align-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+
+        .btn {
+            width: 100%;
+            height: 44px;
+            font-size: 14px;
+            border: 0px solid #253737;
+            background: #dddddd;
+            padding: 10px 21px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            color: #333333;
+        }
+        .btn:hover {
+            width: 100%;
+            height: 44px;
+            font-size: 14px;
+            border: 0px solid #253737;
+            background: #dedede;
+            padding: 10px 21px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            color: #333333;
+        }
+        .btn:active {
+            width: 100%;
+            height: 44px;
+            font-size: 14px;
+            border: 0px solid #253737;
+            background: #eeeeee;
+            padding: 10px 21px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            color: #333333;
+        }
     </style>
 </head>
-<body>
-<table><br/><br/><br/></table>
-<h2><center>Add new user</center></h2>
-<c:url var="addAction" value="/users/add" />
-<form:form action="${addAction}" commandName="user">
-    <table align="center">
-        <c:if test="${!empty user.name}">
-        <tr>
-            <td>
-                <form:label path="id">
-                    <spring:message text="ID"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="id" readonly="true" size="8" disabled="true"/>
-                <form:hidden path="id"/>
-            </td>
-            </c:if>
-            <td>
-                <form:label path="name">
-                    <spring:message text="Name"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="name"/>
-            </td>
-            <td>
-                <form:label path="age">
-                    <spring:message text="Age"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="age"/>
-            </td>
-            <td>
-                <form:label path="admin">
-                    <spring:message text="Admin?"/>
-                </form:label>
-            </td>
-            <td>
-                <form:radiobutton path="admin" value="1" label="Yes" />
-                <form:radiobutton path="admin" value="0" label="No" />
-            </td>
-            <td colspan="2">
-                <c:if test="${!empty user.name}">
-                    <input type="submit"
-                           value="<spring:message text="Edit user data"/>"/>
-                </c:if>
-                <c:if test="${empty user.name}">
-                    <input type="submit"
-                           value="<spring:message text="Add user"/>"/>
-                </c:if>
-            </td>
-        </tr>
-    </table>
-</form:form>
-<h1><center>USERS</center></h1>
+<body bgcolor="#eeeeee">
+<table width="95%" align="center">
+    <tr>
+        <td width="20%" valign="top">
+            <table class="header" align="center">
+                <tr class="header" align="center">
+                    <td class="header" align="center" height="100px">
+                    </td>
+                </tr>
+            </table>
 
-<c:if test="${!empty listUsers}">
-    <table class="tg" width="90%" align="center">
-        <tr>
-            <th width=10%>ID</th>
-            <th width=30%>User name</th>
-            <th width=10%>Age</th>
-            <th width=10%>isAdmin</th>
-            <th width=20%>Date of registration</th>
-            <th width=10%>Edit</th>
-            <th width=10%>Delete</th>
-        </tr>
-        <c:forEach items="${listUsers}" var="user">
-            <tr>
-                <td align="center">${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.age}</td>
-                <td>${user.admin}</td>
-                <td>${user.createdDate}</td>
-                <td align="center"><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
-                <td align="center"><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-<c:if test="${empty listUsers}"><center>List of users is empty.</center></c:if>
+            <c:url var="addAction" value="/users/add" />
+            <form:form action="${addAction}" commandName="user">
+                <table class="form" align="center">
+                    <tr>
+                        <td>
+                            <table class="header" align="center">
+                                <tr class="header" align="center">
+                                    <td class="header" align="center">
+                                        <c:if test="${!empty user.name}">
+                                            EDIT USER
+                                        </c:if>
+                                        <c:if test="${empty user.name}">
+                                            ADD NEW USER
+                                        </c:if>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="form">
+                                <c:if test="${!empty user.name}">
+                                <tr>
+                                    <td class="form">
+                                        <form:label path="id">
+                                            <spring:message text="ID"/>
+                                        </form:label>
+                                    </td>
+                                    <td class="form">
+                                        <form:input path="id" readonly="true" size="8" disabled="true"/>
+                                        <form:hidden path="id"/>
+                                    </td>
+                                    </c:if>
+                                </tr>
+                                <tr>
+                                    <td class="form">
+                                        <form:label path="name">
+                                            <spring:message text="Name"/>
+                                        </form:label>
+                                    </td>
+                                    <td class="form">
+                                        <form:input path="name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form">
+                                        <form:label path="age">
+                                            <spring:message text="Age"/>
+                                        </form:label>
+                                    </td>
+                                    <td class="form">
+                                        <form:input path="age"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form">
+                                        <form:label path="admin">
+                                            <spring:message text="Admin?"/>
+                                        </form:label>
+                                    </td>
+                                    <td class="form">
+                                        <form:checkbox path="admin" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="form">
+                                        <c:if test="${!empty user.name}">
+                                            <input class="btn" type="submit"
+                                                   value="<spring:message text="SUBMIT CHANGES"/>"/>
+                                        </c:if>
+                                        <c:if test="${empty user.name}">
+                                            <input class="btn" type="submit"
+                                                   value="<spring:message text="ADD USER"/>"/>
+                                        </c:if>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </form:form>
+        </td>
+        <td width="2%">
+
+        </td>
+        <td width="78%">
+
+            <table class="header" align="center">
+                <tr class="header" align="center">
+                    <td class="header" align="center" height="100px">
+                        USERS
+                    </td>
+                </tr>
+            </table>
+            <c:if test="${!empty listUsers}">
+                <table class="tg" align="center" width="100%">
+                    <tr>
+                        <th width=10%>ID</th>
+                        <th width=20%>User name</th>
+                        <th width=10%>Age</th>
+                        <th width=10%>isAdmin</th>
+                        <th width=30%>Date of registration</th>
+                        <th width=10%>Edit</th>
+                        <th width=10%>Delete</th>
+                    </tr>
+                    <tr height="10px" bgcolor="#eeeeee">
+
+                    </tr>
+                    <c:forEach items="${listUsers}" var="user">
+                        <tr>
+                            <td align="center">${user.id}</td>
+                            <td>${user.name}</td>
+                            <td align="center">${user.age}</td>
+                            <td align="center">${user.admin}</td>
+                            <td align="center">${user.createdDate}</td>
+                            <td align="center"><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
+                            <td align="center"><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:if>
+            <c:if test="${empty listUsers}"><center>List of users is empty.</center></c:if>
+        </td>
+    </tr>
+</table>
+
+
 <br>
 
 </body>

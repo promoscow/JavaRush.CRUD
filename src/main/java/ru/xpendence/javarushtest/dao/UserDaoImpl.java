@@ -2,13 +2,11 @@ package ru.xpendence.javarushtest.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.xpendence.javarushtest.model.User;
 
-import javax.persistence.Id;
 import java.util.List;
 
 /**
@@ -43,14 +41,14 @@ public class UserDaoImpl implements UserDao {
 
     public void removeUser(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        User user = (User) session.load(User.class, new Integer(id));
+        User user = (User) session.load(User.class, id);
         if (user != null) session.delete(user);
         logger.info("User removed. User info: " + user);
     }
 
     public User getUserById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        User user = (User) session.load(User.class, new Integer(id));
+        User user = (User) session.load(User.class, id);
         logger.info("User loaded. User info: " + user);
         return user;
     }
