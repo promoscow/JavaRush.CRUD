@@ -64,7 +64,7 @@ public class User {
         return createdDate;
     }
 
-    public void setCreatedDate(String createdDate) {
+    public void setCreatedDate() {
         this.createdDate = String.valueOf(new Date());
     }
 

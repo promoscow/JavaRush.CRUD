@@ -27,6 +27,7 @@ public class UserDaoImpl implements UserDao {
 
     public void addUser(User user) {
         Session session = this.sessionFactory.getCurrentSession();
+        user.setCreatedDate();
         session.persist(user);
         logger.info("User added. User details: " + user);
     }
