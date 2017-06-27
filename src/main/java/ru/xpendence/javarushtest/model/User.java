@@ -1,6 +1,7 @@
 package ru.xpendence.javarushtest.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by promoscow on 19.06.17.
@@ -64,7 +65,7 @@ public class User {
     }
 
     public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
+        this.createdDate = String.valueOf(new Date());
     }
 
     @Override

@@ -83,7 +83,7 @@
 <c:if test="${empty listUsers}"><center>List of users is empty.</center></c:if>
 <br>
 <h2>Add new user</h2>
-<c:url var="addAction" value="/users/add">
+<c:url var="addAction" value="/users/add" />
 <form:form action="${addAction}" commandName="user">
         <table>
             <c:if test="${!empty user.name}">
@@ -144,6 +144,5 @@
             </tr>
         </table>
     </form:form>
-</c:url>
 </body>
 </html>
