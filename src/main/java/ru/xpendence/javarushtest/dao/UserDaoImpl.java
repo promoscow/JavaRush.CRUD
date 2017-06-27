@@ -2,6 +2,7 @@ package ru.xpendence.javarushtest.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -27,8 +28,10 @@ public class UserDaoImpl implements UserDao {
 
     public void addUser(User user) {
         Session session = this.sessionFactory.getCurrentSession();
-        user.setCreatedDate();
+        System.out.println(user);
+//        Transaction tr = session.beginTransaction();
         session.persist(user);
+//        tr.commit();
         logger.info("User added. User details: " + user);
     }
 

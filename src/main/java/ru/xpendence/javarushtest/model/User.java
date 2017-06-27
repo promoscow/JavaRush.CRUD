@@ -1,6 +1,7 @@
 package ru.xpendence.javarushtest.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -26,7 +27,7 @@ public class User {
     private boolean isAdmin;
 
     @Column(name = "createdDate")
-    private String createdDate;
+    private Timestamp createdDate;
 
     public int getId() {
         return id;
@@ -60,12 +61,12 @@ public class User {
         isAdmin = admin;
     }
 
-    public String getCreatedDate() {
+    public Timestamp getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate() {
-        this.createdDate = String.valueOf(new Date());
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
     }
 
     @Override

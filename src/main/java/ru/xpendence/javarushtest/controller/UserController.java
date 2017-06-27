@@ -53,7 +53,7 @@ public class UserController {
     public String addUser(@ModelAttribute("user") User user) {
         if (user.getId() == 0) this.userService.addUser(user);
         else this.userService.updateUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     /**
