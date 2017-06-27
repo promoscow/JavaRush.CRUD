@@ -65,25 +65,26 @@ public class UserController {
     @RequestMapping("/remove/{id}")
     public String removeUser(@PathVariable("id") int id) {
         this.userService.removeUser(id);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @RequestMapping("/edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUsers());
-        return "users";
+        return "index";
     }
 
     @RequestMapping("userdata{id}")
     public String userData(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
-        return "userdata";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("listUsers", this.userService.listUsers());
         return "index";
     }
 }
