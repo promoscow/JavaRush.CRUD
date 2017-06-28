@@ -75,6 +75,17 @@
             background-color: #ffffff;
         }
 
+        .material {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: lighter;
+            padding: 10px 15px;
+            border: 1px solid #eeeeee;
+            align-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+
         .btn {
             width: 100%;
             height: 44px;
@@ -227,7 +238,7 @@
                         <th width=20%>User name</th>
                         <th width=10%>Age</th>
                         <th width=10%>isAdmin</th>
-                        <th width=30%>Date of registration</th>
+                        <th width=30%>Registration / update date</th>
                         <th width=10%>Edit</th>
                         <th width=10%>Delete</th>
                     </tr>
@@ -241,6 +252,7 @@
                             <td align="center">${user.age}</td>
                             <td align="center">${user.admin}</td>
                             <td align="center">${user.createdDate}</td>
+                            <%--<td align="center"><form:button path="/edit/${user.id}" value="EDIT" /></td>--%>
                             <td align="center"><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
                             <td align="center"><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
                         </tr>
