@@ -75,6 +75,18 @@
             background-color: #ffffff;
         }
 
+        .font {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: lighter;
+            font-style: italic;
+            padding: 0 15px;
+            border-width: 0;
+            align-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+
         .material {
             font-family: Arial, sans-serif;
             font-size: 14px;
@@ -139,13 +151,13 @@
 
         .link {
             text-decoration: none;
-            background-color: #ff5c5c;
+            background-color: #78909C;
             color: #ffffff;
             padding: 5px;
-            border: 0 #ff5c5c;
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            border-radius: 6px;
+            border: 0 #78909C;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
         }
     </style>
 </head>
@@ -205,6 +217,13 @@
                                             </c:if>
                                                         <%--name--%>
                                                     <tr>
+                                                        <td class="font">
+                                                            <form:label path="name">
+                                                                <spring:message text="Name:"/>
+                                                            </form:label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <%--<td class="form">--%>
                                                             <%--<form:label path="name">--%>
                                                                 <%--<spring:message text="Name"/>--%>
@@ -216,18 +235,27 @@
                                                     </tr>
                                                         <%--age--%>
                                                     <tr>
+                                                    <tr>
+                                                        <td class="font">
+                                                            <form:label path="name">
+                                                                <spring:message text="Age:"/>
+                                                            </form:label>
+                                                        </td>
+                                                    </tr>
+                                                    </tr>
+                                                    <tr>
                                                         <%--<td class="form">--%>
                                                             <%--<form:label path="age">--%>
                                                                 <%--<spring:message text="Age"/>--%>
                                                             <%--</form:label>--%>
                                                         <%--</td>--%>
-                                                        <td class="form">
+                                                        <td class="form" colspan="2">
                                                             <form:input placeholder="Enter user age" cssClass="field" path="age"/>
                                                         </td>
                                                     </tr>
                                                         <%--isAdmin--%>
                                                     <tr>
-                                                        <td class="form">
+                                                        <td class="font">
                                                             <form:label path="admin">
                                                                 <spring:message text="Admin?"/>
                                                             </form:label>
@@ -321,7 +349,7 @@
                                     <th width=10%>ID</th>
                                     <th width=25%>User name</th>
                                     <th width=10%>Age</th>
-                                    <th width=10%>isAdmin</th>
+                                    <th width=10%>Admin</th>
                                     <th width=30%>Registration / update date</th>
                                     <th width=5%></th>
                                     <th width=10%></th>
@@ -334,7 +362,13 @@
                                         <td align="center">${user.id}</td>
                                         <td>${user.name}</td>
                                         <td align="center">${user.age}</td>
-                                        <td align="center">${user.admin}</td>
+                                        <c:if test="${user.admin}">
+                                            <td align="center"><img src="../../resources/checkcircle.png"></td>
+                                        </c:if>
+                                        <c:if test="${!user.admin}">
+                                            <td align="center"></td>
+                                        </c:if>
+                                        <%--<td align="center">${user.admin}</td>--%>
                                         <td align="center">${user.createdDate}</td>
                                             <%--<td align="center"><form:button path="/edit/${user.id}" value="EDIT" /></td>--%>
                                         <td align="center"><a href="<c:url value='/edit/${user.id}'/>"><img src="../../resources/pencilcircle.png"></a></td>
@@ -355,7 +389,7 @@
                                         <c:param name="page" value="${page-1}"/>
                                     </c:url>
                                     <c:if test="${page > 1}">
-                                        <a href="<c:out value="${prev}" />" class="pn prev">Previous</a>
+                                        <a href="<c:out value="${prev}" />" class="link">Previous</a>
                                     </c:if>
 
                                     <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
@@ -367,7 +401,7 @@
                                                 <c:url value="/" var="url">
                                                     <c:param name="page" value="${i.index}"/>
                                                 </c:url>
-                                                <a href='<c:out value="${url}" />'>${i.index}</a>
+                                                <a href='<c:out value="${url}" />' class="link">${i.index}</a>
                                             </c:otherwise>
                                         </c:choose>
                                     </c:forEach>
@@ -375,7 +409,7 @@
                                         <c:param name="page" value="${page + 1}"/>
                                     </c:url>
                                     <c:if test="${page + 1 <= maxPages}">
-                                        <a href='<c:out value="${next}" />' class="pn next">Next</a>
+                                        <a href='<c:out value="${next}" />' class="link">Next</a>
                                     </c:if>
                                 </td>
                             </tr>

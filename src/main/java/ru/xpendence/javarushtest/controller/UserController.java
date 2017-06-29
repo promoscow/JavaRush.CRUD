@@ -22,6 +22,8 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
+    private static int id = 0;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
 
@@ -76,9 +78,10 @@ public class UserController {
     @RequestMapping("/edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model) {
         logger.debug("UserController", "editUser");
-        model.addAttribute("user", this.userService.getUserById(id));
+        UserController.id = this.userService.getUserById(id).getId();
+//        model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUsers());
-        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping("userdata{id}")
@@ -99,7 +102,12 @@ public class UserController {
         System.out.println("ENTER LIST PAGING");
         System.out.println(userName);
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("user", new User());
+        if (id != 0) {
+            modelAndView.addObject("user", this.userService.getUserById(id));
+            id = 0;
+        } else {
+            modelAndView.addObject("user", new User());
+        }
 
         List<User> users = null;
         if (userName == null || userName.length() == 0) {
