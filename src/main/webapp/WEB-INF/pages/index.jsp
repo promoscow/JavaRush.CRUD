@@ -129,6 +129,7 @@
     <tr>
             <%--Sider--%>
         <td width="20%" valign="top">
+
             <table class="header" align="center">
                 <tr class="header" align="center">
                     <td class="header" align="center" height="100px">
@@ -136,121 +137,148 @@
                 </tr>
             </table>
 
-            <c:url var="addAction" value="/users/add" />
-            <form:form action="${addAction}" commandName="user">
-                <%--Add form--%>
-                <table class="form" align="center">
-                    <tr>
-                        <td>
-                            <table class="header" align="center">
-                                <tr class="header" align="center">
-                                    <td class="header" align="center">
-                                        <c:if test="${!empty user.name}">
-                                            EDIT USER
-                                        </c:if>
-                                        <c:if test="${empty user.name}">
-                                            ADD NEW USER
-                                        </c:if>
+                        <%--Add form--%>
+            <table width="100%">
+                <tr>
+                    <td>
+                        <c:url var="addAction" value="/users/add" />
+                        <form:form action="${addAction}" commandName="user">
+                            <%--Add form--%>
+                            <table class="form" align="center" width="100%">
+                                <tr>
+                                    <td>
+                                        <table class="header" align="center">
+                                            <tr class="header" align="center">
+                                                <td class="header" align="center">
+                                                    <c:if test="${!empty user.name}">
+                                                        EDIT USER
+                                                    </c:if>
+                                                    <c:if test="${empty user.name}">
+                                                        ADD NEW USER
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="form">
+                                                <%--ID--%>
+                                            <c:if test="${!empty user.name}">
+                                                <tr>
+                                                    <td class="form">
+                                                        <form:label path="id">
+                                                            <spring:message text="ID"/>
+                                                        </form:label>
+                                                    </td>
+                                                    <td class="form">
+                                                        <form:input path="id" readonly="true" size="8" disabled="true"/>
+                                                        <form:hidden path="id"/>
+                                                    </td>
+                                                </tr>
+                                            </c:if>
+                                                        <%--name--%>
+                                                    <tr>
+                                                        <td class="form">
+                                                            <form:label path="name">
+                                                                <spring:message text="Name"/>
+                                                            </form:label>
+                                                        </td>
+                                                        <td class="form">
+                                                            <form:input path="name"/>
+                                                        </td>
+                                                    </tr>
+                                                        <%--age--%>
+                                                    <tr>
+                                                        <td class="form">
+                                                            <form:label path="age">
+                                                                <spring:message text="Age"/>
+                                                            </form:label>
+                                                        </td>
+                                                        <td class="form">
+                                                            <form:input path="age"/>
+                                                        </td>
+                                                    </tr>
+                                                        <%--isAdmin--%>
+                                                    <tr>
+                                                        <td class="form">
+                                                            <form:label path="admin">
+                                                                <spring:message text="Admin?"/>
+                                                            </form:label>
+                                                        </td>
+                                                        <td class="form">
+                                                            <form:checkbox path="admin" />
+                                                        </td>
+                                                    </tr>
+                                                        <%--date--%>
+
+                                                            <%--<c:if test="${!empty user.name}">--%>
+                                                            <%--<tr>--%>
+                                                            <%--<td class="form">--%>
+                                                            <%--<form:label path="date">--%>
+                                                            <%--<spring:message text="Registration date"/>--%>
+                                                            <%--</form:label>--%>
+                                                            <%--</td>--%>
+                                                            <%--<td class="form">--%>
+                                                            <%--<form:input path="date" readonly="true" size="8" disabled="true"/>--%>
+                                                            <%--<form:hidden path="date"/>--%>
+                                                            <%--</td>--%>
+
+                                                            <%--</tr>--%>
+                                                            <%--</c:if>--%>
+
+                                                            <%--Submit button--%>
+                                                    <tr>
+                                                        <td colspan="2" class="form">
+                                                            <c:if test="${!empty user.name}">
+                                                                <input class="btn" type="submit"
+                                                                       value="<spring:message text="SUBMIT CHANGES"/>"/>
+                                                            </c:if>
+                                                            <c:if test="${empty user.name}">
+                                                                <input class="btn" type="submit"
+                                                                       value="<spring:message text="ADD USER"/>"/>
+                                                            </c:if>
+                                                        </td>
+                                                    </tr>
+                                        </table>
                                     </td>
                                 </tr>
                             </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table class="form">
-                                <%--ID--%>
-                                <c:if test="${!empty user.name}">
-                                <tr>
-                                    <td class="form">
-                                        <form:label path="id">
-                                            <spring:message text="ID"/>
-                                        </form:label>
-                                    </td>
-                                    <td class="form">
-                                        <form:input path="id" readonly="true" size="8" disabled="true"/>
-                                        <form:hidden path="id"/>
-                                    </td>
+                        </form:form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                                    <%--<form:form action="/">--%>
+                                        <%--<table class="form" width="100%">--%>
+                                                <%--&lt;%&ndash;search field&ndash;%&gt;--%>
+                                            <%--<tr>--%>
+                                                <%--<td class="form">--%>
+                                                    <%--<form:input path="userName"/>--%>
+                                                <%--</td>--%>
+                                                <%--<td class="form">--%>
+                                                    <%--<input class="btn" type="submit"--%>
+                                                           <%--value="<spring:message text="S"/>"/>--%>
+                                                <%--</td>--%>
+                                            <%--</tr>--%>
+                                        <%--</table>--%>
+                                    <%--</form:form>--%>
 
-                                </tr>
-                            </c:if>
-                                    <%--name--%>
-                                <tr>
-                                    <td class="form">
-                                        <form:label path="name">
-                                            <spring:message text="Name"/>
-                                        </form:label>
-                                    </td>
-                                    <td class="form">
-                                        <form:input path="name"/>
-                                    </td>
-                                </tr>
-                                    <%--age--%>
-                                <tr>
-                                    <td class="form">
-                                        <form:label path="age">
-                                            <spring:message text="Age"/>
-                                        </form:label>
-                                    </td>
-                                    <td class="form">
-                                        <form:input path="age"/>
-                                    </td>
-                                </tr>
-                                    <%--isAdmin--%>
-                                <tr>
-                                    <td class="form">
-                                        <form:label path="admin">
-                                            <spring:message text="Admin?"/>
-                                        </form:label>
-                                    </td>
-                                    <td class="form">
-                                        <form:checkbox path="admin" />
-                                    </td>
-                                </tr>
-
-                                    <%--date--%>
-
-                                <%--<c:if test="${!empty user.name}">--%>
-                                    <%--<tr>--%>
-                                        <%--<td class="form">--%>
-                                            <%--<form:label path="date">--%>
-                                                <%--<spring:message text="Registration date"/>--%>
-                                            <%--</form:label>--%>
-                                        <%--</td>--%>
-                                        <%--<td class="form">--%>
-                                            <%--<form:input path="date" readonly="true" size="8" disabled="true"/>--%>
-                                            <%--<form:hidden path="date"/>--%>
-                                        <%--</td>--%>
-
-                                    <%--</tr>--%>
-                                <%--</c:if>--%>
-
-                                    <%--Submit button--%>
-                                <tr>
-                                    <td colspan="2" class="form">
-                                        <c:if test="${!empty user.name}">
-                                            <input class="btn" type="submit"
-                                                   value="<spring:message text="SUBMIT CHANGES"/>"/>
-                                        </c:if>
-                                        <c:if test="${empty user.name}">
-                                            <input class="btn" type="submit"
-                                                   value="<spring:message text="ADD USER"/>"/>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                </table>
-            </form:form>
+                        <form action="/">
+                        <input type="text" name="userName" />
+                        <input type="submit" value="Search" />
+                        </form>
+                                </td>
+                </tr>
+            </table>
         </td>
             <%--Vertical divider--%>
         <td width="2%">
 
         </td>
             <%--Main table--%>
-        <td width="78%">
+        <td width="78%" valign="top">
             <table width="100%">
                 <tr>
                     <td>
