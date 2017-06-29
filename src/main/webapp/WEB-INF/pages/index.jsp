@@ -76,15 +76,38 @@
             background-color: #ffffff;
         }
 
+        .form2 {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: lighter;
+            padding: 10px 15px;
+            border: 0 #ffffff;
+            align-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+
         .font {
+             font-family: Arial, sans-serif;
+             font-size: 14px;
+             font-weight: lighter;
+             font-style: italic;
+             padding: 0 15px;
+             border-width: 0;
+             align-content: center;
+             align-items: center;
+             background-color: #ffffff;
+         }
+
+        .font-noborder {
             font-family: Arial, sans-serif;
             font-size: 14px;
             font-weight: lighter;
             font-style: italic;
             padding: 0 15px;
             border-width: 0;
-            align-content: center;
-            align-items: center;
+            align-content: right;
+            align-items: right;
             background-color: #ffffff;
         }
 
@@ -201,16 +224,16 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <table class="form" width="100%">
+                                        <table width="100%">
                                                 <%--ID--%>
                                             <c:if test="${!empty user.name}">
                                                 <tr>
-                                                    <td class="form">
+                                                    <td class="font">
                                                         <form:label path="id">
-                                                            <spring:message text="ID"/>
+                                                            <spring:message text="ID: "/>
                                                         </form:label>
                                                     </td>
-                                                    <td class="form">
+                                                    <td class="form2">
                                                         <form:input path="id" readonly="true" size="8" disabled="true"/>
                                                         <form:hidden path="id"/>
                                                     </td>
@@ -276,27 +299,17 @@
                 </tr>
                 <tr>
                     <td>
-                                    <%--<form:form action="/">--%>
-                                        <table class="form" width="100%">
-                                                <%--search field--%>
-                                            <tr>
-                                                <td class="form">
-                                                    <form action="/">
-                                                        <input class="field" type="text" name="userName" />
-                                                        <input class="btn" type="submit" value="Search" />
-                                                    </form>
-                                                    <%--<form:input type=""/>--%>
-                                                <%--</td>--%>
-                                                <%--<td class="form">--%>
-                                                    <%--<input class="btn" type="submit"--%>
-                                                           <%--value="<spring:message text="S"/>"/>--%>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    <%--</form:form>--%>
-
-
+                        <table class="form" width="100%">
+                            <tr>
+                                <td class="form">
+                                    <form action="/">
+                                        <input class="field" type="text" name="userName" />
+                                        <input class="btn" type="submit" value="Search" />
+                                    </form>
                                 </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
         </td>
