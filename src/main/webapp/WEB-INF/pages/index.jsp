@@ -122,6 +122,31 @@
             border-radius: 0px;
             color: #333333;
         }
+
+        .field {
+            width: 100%;
+            height: 30px;
+            font-size: 14px;
+            border: 1px solid #dddddd;
+            background: #ffffff;
+            margin-bottom: 20px;
+            padding: 10px 21px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            color: #333333;
+        }
+
+        .link {
+            text-decoration: none;
+            background-color: #ff5c5c;
+            color: #ffffff;
+            padding: 5px;
+            border: 0 #ff5c5c;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+        }
     </style>
 </head>
 <body bgcolor="#eeeeee">
@@ -138,7 +163,7 @@
             </table>
 
                         <%--Add form--%>
-            <table width="100%">
+            <table width="300px">
                 <tr>
                     <td>
                         <c:url var="addAction" value="/users/add" />
@@ -163,7 +188,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <table class="form">
+                                        <table class="form" width="100%">
                                                 <%--ID--%>
                                             <c:if test="${!empty user.name}">
                                                 <tr>
@@ -180,24 +205,24 @@
                                             </c:if>
                                                         <%--name--%>
                                                     <tr>
-                                                        <td class="form">
-                                                            <form:label path="name">
-                                                                <spring:message text="Name"/>
-                                                            </form:label>
-                                                        </td>
-                                                        <td class="form">
-                                                            <form:input path="name"/>
+                                                        <%--<td class="form">--%>
+                                                            <%--<form:label path="name">--%>
+                                                                <%--<spring:message text="Name"/>--%>
+                                                            <%--</form:label>--%>
+                                                        <%--</td>--%>
+                                                        <td class="form" colspan="2">
+                                                            <form:input placeholder="Enter user name" cssClass="field" width="250px" path="name"/>
                                                         </td>
                                                     </tr>
                                                         <%--age--%>
                                                     <tr>
+                                                        <%--<td class="form">--%>
+                                                            <%--<form:label path="age">--%>
+                                                                <%--<spring:message text="Age"/>--%>
+                                                            <%--</form:label>--%>
+                                                        <%--</td>--%>
                                                         <td class="form">
-                                                            <form:label path="age">
-                                                                <spring:message text="Age"/>
-                                                            </form:label>
-                                                        </td>
-                                                        <td class="form">
-                                                            <form:input path="age"/>
+                                                            <form:input placeholder="Enter user age" cssClass="field" path="age"/>
                                                         </td>
                                                     </tr>
                                                         <%--isAdmin--%>
@@ -251,24 +276,25 @@
                 <tr>
                     <td>
                                     <%--<form:form action="/">--%>
-                                        <%--<table class="form" width="100%">--%>
-                                                <%--&lt;%&ndash;search field&ndash;%&gt;--%>
-                                            <%--<tr>--%>
-                                                <%--<td class="form">--%>
-                                                    <%--<form:input path="userName"/>--%>
+                                        <table class="form" width="100%">
+                                                <%--search field--%>
+                                            <tr>
+                                                <td class="form">
+                                                    <form action="/">
+                                                        <input class="field" type="text" name="userName" />
+                                                        <input class="btn" type="submit" value="Search" />
+                                                    </form>
+                                                    <%--<form:input type=""/>--%>
                                                 <%--</td>--%>
                                                 <%--<td class="form">--%>
                                                     <%--<input class="btn" type="submit"--%>
                                                            <%--value="<spring:message text="S"/>"/>--%>
-                                                <%--</td>--%>
-                                            <%--</tr>--%>
-                                        <%--</table>--%>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     <%--</form:form>--%>
 
-                        <form action="/">
-                        <input type="text" name="userName" />
-                        <input type="submit" value="Search" />
-                        </form>
+
                                 </td>
                 </tr>
             </table>
@@ -293,12 +319,12 @@
                             <table class="tg" align="center" width="100%">
                                 <tr>
                                     <th width=10%>ID</th>
-                                    <th width=20%>User name</th>
+                                    <th width=25%>User name</th>
                                     <th width=10%>Age</th>
                                     <th width=10%>isAdmin</th>
                                     <th width=30%>Registration / update date</th>
-                                    <th width=10%>Edit</th>
-                                    <th width=10%>Delete</th>
+                                    <th width=5%></th>
+                                    <th width=10%></th>
                                 </tr>
                                 <tr height="10px" bgcolor="#eeeeee">
 
@@ -311,8 +337,8 @@
                                         <td align="center">${user.admin}</td>
                                         <td align="center">${user.createdDate}</td>
                                             <%--<td align="center"><form:button path="/edit/${user.id}" value="EDIT" /></td>--%>
-                                        <td align="center"><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
-                                        <td align="center"><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
+                                        <td align="center"><a href="<c:url value='/edit/${user.id}'/>"><img src="../../resources/pencilcircle.png"></a></td>
+                                        <td align="center"><a href="<c:url value='/remove/${user.id}'/>"><img src="../../resources/closecircle2.png"></a></td>
                                     </tr>
                                 </c:forEach>
                             </table>

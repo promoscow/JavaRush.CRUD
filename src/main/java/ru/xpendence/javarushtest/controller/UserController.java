@@ -1,5 +1,7 @@
 package ru.xpendence.javarushtest.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.support.PagedListHolder;
@@ -20,6 +22,7 @@ import java.util.List;
 
 @Controller
 public class UserController {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
 
     @Autowired(required = true)
@@ -72,6 +75,7 @@ public class UserController {
 
     @RequestMapping("/edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model) {
+        logger.debug("UserController", "editUser");
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("listUsers", this.userService.listUsers());
         return "index";
