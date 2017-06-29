@@ -88,13 +88,13 @@ public class UserController {
         }
 
         List<User> users = null;
-        if (userName == null || userName.length() == 0) {
+        if (userName == null || userName.length() < 3) {
             users = this.userService.listUsers();
         } else {
             List<User> tempUsers = this.userService.listUsers();
             users = new ArrayList<User>();
             for (User tempUser : tempUsers) {
-                if (tempUser.getName().equals(userName)) {
+                if (tempUser.getName().toLowerCase().contains(userName.toLowerCase())) {
                     System.out.println("filter: " + tempUser);
                     users.add(tempUser);
                 }
