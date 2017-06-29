@@ -16,6 +16,7 @@
     <meta charset="UTF-8">
     <title>USERS</title>
     <style type="text/css">
+
         .tg {
             border-collapse: collapse;
             border-spacing: 0;
@@ -224,11 +225,6 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <%--<td class="form">--%>
-                                                            <%--<form:label path="name">--%>
-                                                                <%--<spring:message text="Name"/>--%>
-                                                            <%--</form:label>--%>
-                                                        <%--</td>--%>
                                                         <td class="form" colspan="2">
                                                             <form:input placeholder="Enter user name" cssClass="field" width="250px" path="name"/>
                                                         </td>
@@ -244,11 +240,6 @@
                                                     </tr>
                                                     </tr>
                                                     <tr>
-                                                        <%--<td class="form">--%>
-                                                            <%--<form:label path="age">--%>
-                                                                <%--<spring:message text="Age"/>--%>
-                                                            <%--</form:label>--%>
-                                                        <%--</td>--%>
                                                         <td class="form" colspan="2">
                                                             <form:input placeholder="Enter user age" cssClass="field" path="age"/>
                                                         </td>
@@ -260,28 +251,10 @@
                                                                 <spring:message text="Admin?"/>
                                                             </form:label>
                                                         </td>
-                                                        <td class="form">
+                                                        <td class="form" align="right">
                                                             <form:checkbox path="admin" />
                                                         </td>
                                                     </tr>
-                                                        <%--date--%>
-
-                                                            <%--<c:if test="${!empty user.name}">--%>
-                                                            <%--<tr>--%>
-                                                            <%--<td class="form">--%>
-                                                            <%--<form:label path="date">--%>
-                                                            <%--<spring:message text="Registration date"/>--%>
-                                                            <%--</form:label>--%>
-                                                            <%--</td>--%>
-                                                            <%--<td class="form">--%>
-                                                            <%--<form:input path="date" readonly="true" size="8" disabled="true"/>--%>
-                                                            <%--<form:hidden path="date"/>--%>
-                                                            <%--</td>--%>
-
-                                                            <%--</tr>--%>
-                                                            <%--</c:if>--%>
-
-                                                            <%--Submit button--%>
                                                     <tr>
                                                         <td colspan="2" class="form">
                                                             <c:if test="${!empty user.name}">

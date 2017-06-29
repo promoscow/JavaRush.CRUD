@@ -33,21 +33,6 @@ public class UserController {
         this.userService = userService;
     }
 
-//    /**
-//     * Вывод списка пользователя.
-//     * <p>
-//     * Вывод всех моделей с атрибутом "users".
-//     *
-//     * @param model
-//     * @return остаёмся на странице
-//     */
-//    @RequestMapping(value = "users", method = RequestMethod.GET)
-//    public String listUsers(Model model) {
-//        model.addAttribute("user", new User());
-//        model.addAttribute("listUsers", this.userService.listUsers());
-//        return "users";
-//    }
-
     /**
      * Создание нового пользователя.
      * <p>
@@ -89,13 +74,6 @@ public class UserController {
         model.addAttribute("user", this.userService.getUserById(id));
         return "redirect:/";
     }
-
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public String index(Model model) {
-//        model.addAttribute("user", new User());
-//        model.addAttribute("listUsers", this.userService.listUsers());
-//        return "index";
-//    }
 
     @RequestMapping(value = "/")
     public ModelAndView listOfUsers(@RequestParam(required = false) Integer page, @RequestParam(required = false) String userName) {
