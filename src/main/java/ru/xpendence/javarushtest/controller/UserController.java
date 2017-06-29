@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ru.xpendence.javarushtest.model.User;
 import ru.xpendence.javarushtest.service.UserService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -82,14 +83,14 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("listUsers", this.userService.listUsers());
-        return "index";
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public String index(Model model) {
+//        model.addAttribute("user", new User());
+//        model.addAttribute("listUsers", this.userService.listUsers());
+//        return "index";
+//    }
 
-    @RequestMapping(value = "/list")
+    @RequestMapping(value = "/")
     public ModelAndView listOfUsers(@RequestParam(required = false) Integer page) {
         System.out.println("ENTER LIST PAGING");
         ModelAndView modelAndView = new ModelAndView("index");
@@ -110,12 +111,11 @@ public class UserController {
         modelAndView.addObject("page", page);
         if (page == null || page < 1 || page > pagedListHolder.getPageCount()) {
             pagedListHolder.setPage(0);
-            modelAndView.addObject("users", pagedListHolder.getPageList());
+            modelAndView.addObject("listUsers", pagedListHolder.getPageList());
         } else if (page <= pagedListHolder.getPageCount()) {
             pagedListHolder.setPage(page - 1);
-            modelAndView.addObject("users", pagedListHolder.getPageList());
+            modelAndView.addObject("listUsers", pagedListHolder.getPageList());
         }
-
         return modelAndView;
     }
 

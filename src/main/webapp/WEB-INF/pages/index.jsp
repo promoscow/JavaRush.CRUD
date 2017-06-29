@@ -83,7 +83,7 @@
             border: 1px solid #eeeeee;
             align-content: center;
             align-items: center;
-            background-color: #ffffff;
+            word-spacing: 20px;
         }
 
         .btn {
@@ -127,6 +127,7 @@
 <body bgcolor="#eeeeee">
 <table width="95%" align="center">
     <tr>
+            <%--Sider--%>
         <td width="20%" valign="top">
             <table class="header" align="center">
                 <tr class="header" align="center">
@@ -137,6 +138,7 @@
 
             <c:url var="addAction" value="/users/add" />
             <form:form action="${addAction}" commandName="user">
+                <%--Add form--%>
                 <table class="form" align="center">
                     <tr>
                         <td>
@@ -157,6 +159,7 @@
                     <tr>
                         <td>
                             <table class="form">
+                                <%--ID--%>
                                 <c:if test="${!empty user.name}">
                                 <tr>
                                     <td class="form">
@@ -168,8 +171,10 @@
                                         <form:input path="id" readonly="true" size="8" disabled="true"/>
                                         <form:hidden path="id"/>
                                     </td>
-                                    </c:if>
+
                                 </tr>
+                            </c:if>
+                                    <%--name--%>
                                 <tr>
                                     <td class="form">
                                         <form:label path="name">
@@ -180,6 +185,7 @@
                                         <form:input path="name"/>
                                     </td>
                                 </tr>
+                                    <%--age--%>
                                 <tr>
                                     <td class="form">
                                         <form:label path="age">
@@ -190,6 +196,7 @@
                                         <form:input path="age"/>
                                     </td>
                                 </tr>
+                                    <%--isAdmin--%>
                                 <tr>
                                     <td class="form">
                                         <form:label path="admin">
@@ -200,6 +207,25 @@
                                         <form:checkbox path="admin" />
                                     </td>
                                 </tr>
+
+                                    <%--date--%>
+
+                                <%--<c:if test="${!empty user.name}">--%>
+                                    <%--<tr>--%>
+                                        <%--<td class="form">--%>
+                                            <%--<form:label path="date">--%>
+                                                <%--<spring:message text="Registration date"/>--%>
+                                            <%--</form:label>--%>
+                                        <%--</td>--%>
+                                        <%--<td class="form">--%>
+                                            <%--<form:input path="date" readonly="true" size="8" disabled="true"/>--%>
+                                            <%--<form:hidden path="date"/>--%>
+                                        <%--</td>--%>
+
+                                    <%--</tr>--%>
+                                <%--</c:if>--%>
+
+                                    <%--Submit button--%>
                                 <tr>
                                     <td colspan="2" class="form">
                                         <c:if test="${!empty user.name}">
@@ -219,89 +245,93 @@
                 </table>
             </form:form>
         </td>
+            <%--Vertical divider--%>
         <td width="2%">
 
         </td>
+            <%--Main table--%>
         <td width="78%">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <table class="header" align="center">
+                            <tr class="header" align="center">
+                                <td class="header" align="center" height="100px">
+                                    USERS
+                                </td>
+                            </tr>
+                        </table>
+                        <c:if test="${!empty listUsers}">
+                            <table class="tg" align="center" width="100%">
+                                <tr>
+                                    <th width=10%>ID</th>
+                                    <th width=20%>User name</th>
+                                    <th width=10%>Age</th>
+                                    <th width=10%>isAdmin</th>
+                                    <th width=30%>Registration / update date</th>
+                                    <th width=10%>Edit</th>
+                                    <th width=10%>Delete</th>
+                                </tr>
+                                <tr height="10px" bgcolor="#eeeeee">
 
-            <table class="header" align="center">
-                <tr class="header" align="center">
-                    <td class="header" align="center" height="100px">
-                        USERS
+                                </tr>
+                                <c:forEach items="${listUsers}" var="user">
+                                    <tr>
+                                        <td align="center">${user.id}</td>
+                                        <td>${user.name}</td>
+                                        <td align="center">${user.age}</td>
+                                        <td align="center">${user.admin}</td>
+                                        <td align="center">${user.createdDate}</td>
+                                            <%--<td align="center"><form:button path="/edit/${user.id}" value="EDIT" /></td>--%>
+                                        <td align="center"><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
+                                        <td align="center"><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </c:if>
+                        <c:if test="${empty listUsers}"><center>List of users is empty.</center></c:if>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="material" align="center">
+                            <tr align="center">
+                                <td align="center">
+                                    <c:url value="/" var="prev">
+                                        <c:param name="page" value="${page-1}"/>
+                                    </c:url>
+                                    <c:if test="${page > 1}">
+                                        <a href="<c:out value="${prev}" />" class="pn prev">Previous</a>
+                                    </c:if>
+
+                                    <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
+                                        <c:choose>
+                                            <c:when test="${page == i.index}">
+                                                <span>${i.index}</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:url value="/" var="url">
+                                                    <c:param name="page" value="${i.index}"/>
+                                                </c:url>
+                                                <a href='<c:out value="${url}" />'>${i.index}</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                    <c:url value="/" var="next">
+                                        <c:param name="page" value="${page + 1}"/>
+                                    </c:url>
+                                    <c:if test="${page + 1 <= maxPages}">
+                                        <a href='<c:out value="${next}" />' class="pn next">Next</a>
+                                    </c:if>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </table>
-            <c:if test="${!empty listUsers}">
-                <table class="tg" align="center" width="100%">
-                    <tr>
-                        <th width=10%>ID</th>
-                        <th width=20%>User name</th>
-                        <th width=10%>Age</th>
-                        <th width=10%>isAdmin</th>
-                        <th width=30%>Registration / update date</th>
-                        <th width=10%>Edit</th>
-                        <th width=10%>Delete</th>
-                    </tr>
-                    <tr height="10px" bgcolor="#eeeeee">
-
-                    </tr>
-                    <c:forEach items="${listUsers}" var="user">
-                        <tr>
-                            <td align="center">${user.id}</td>
-                            <td>${user.name}</td>
-                            <td align="center">${user.age}</td>
-                            <td align="center">${user.admin}</td>
-                            <td align="center">${user.createdDate}</td>
-                            <%--<td align="center"><form:button path="/edit/${user.id}" value="EDIT" /></td>--%>
-                            <td align="center"><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
-                            <td align="center"><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </c:if>
-            <c:if test="${empty listUsers}"><center>List of users is empty.</center></c:if>
         </td>
     </tr>
 </table>
-
-<table align="center">
-    <tr align="center">
-        <td align="center">
-
-            <c:url value="/list" var="prev">
-                <c:param name="page" value="${page-1}"/>
-            </c:url>
-            <c:if test="${page > 1}">
-                <a href="<c:out value="${prev}" />" class="pn prev">Prev</a>
-            </c:if>
-
-            <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
-                <c:choose>
-                    <c:when test="${page == i.index}">
-                        <span>${i.index}</span>
-                    </c:when>
-                    <c:otherwise>
-                        <c:url value="/list" var="url">
-                            <c:param name="page" value="${i.index}"/>
-                        </c:url>
-                        <a href='<c:out value="${url}" />'>${i.index}</a>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-            <c:url value="/list" var="next">
-                <c:param name="page" value="${page + 1}"/>
-            </c:url>
-            <c:if test="${page + 1 <= maxPages}">
-                <a href='<c:out value="${next}" />' class="pn next">Next</a>
-            </c:if>
-
-
-        </td>
-    </tr>
-</table>
-
-
 <br>
-
 </body>
 </html>
