@@ -303,7 +303,7 @@
                             <tr>
                                 <td class="form">
                                     <form action="/">
-                                        <input class="field" type="text" placeholder="Min 3 symbols or Choose All" name="userName" />
+                                        <input class="field" type="text" placeholder="Min 3 symbols or Blank to reset" name="userName" />
                                         <input class="btn" type="submit" value="Search" />
                                     </form>
                                 </td>

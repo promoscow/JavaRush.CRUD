@@ -9,7 +9,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "test")
+@Table(name = "User")
 public class User {
 
     @Id
@@ -42,7 +42,7 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = (name.length() < 3) ? "New user" : name;
     }
 
     public int getAge() {

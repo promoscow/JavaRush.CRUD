@@ -24,6 +24,7 @@ import java.util.List;
 public class UserController {
 
     private static int id = 0;
+
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
 
@@ -121,5 +122,4 @@ public class UserController {
         }
         return modelAndView;
     }
-
 }
