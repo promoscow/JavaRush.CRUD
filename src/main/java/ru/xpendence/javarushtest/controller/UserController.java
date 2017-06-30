@@ -23,9 +23,8 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private static int id = 0;
-
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static int id = 0;
     private UserService userService;
 
     @Autowired(required = true)
@@ -78,8 +77,6 @@ public class UserController {
 
     @RequestMapping(value = "/")
     public ModelAndView listOfUsers(@RequestParam(required = false) Integer page, @RequestParam(required = false) String userName) {
-        System.out.println("ENTER LIST PAGING");
-        System.out.println(userName);
         ModelAndView modelAndView = new ModelAndView("index");
         if (id != 0) {
             modelAndView.addObject("user", this.userService.getUserById(id));
