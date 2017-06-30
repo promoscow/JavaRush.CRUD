@@ -39,7 +39,7 @@ public class UserController {
      * Если пользователя нет (id == 0), создаём нового. Если есть, обновляем того, что есть.
      *
      * @param user
-     * @return редирект на страницу /users
+     * @return редирект в root
      */
     @RequestMapping(value = "users/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user) {
@@ -52,7 +52,7 @@ public class UserController {
      * Удаление пользователя по ID.
      *
      * @param id
-     * @return редирект на главную страницу
+     * @return редирект в root
      */
     @RequestMapping("/remove/{id}")
     public String removeUser(@PathVariable("id") int id) {
@@ -60,6 +60,15 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     * Изменение данных пользователя.
+     *
+     * Метод получает id и экземпляр модели.
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("/edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model) {
         logger.debug("UserController", "editUser");
@@ -75,6 +84,20 @@ public class UserController {
         return "redirect:/";
     }
 
+    /**
+     * Метод пейджинга.
+     *
+     * Он срабатывает при запросе "/". Далее происходит следующее:
+     * В метод передаётся номер страницы и поисковый запрос в String, если он есть.
+     * Далее — если запрос есть — список наполняется только объектами User, имена которых содержат строку запроса.
+     * Если его нет — копируется основной список.
+     *
+     * Список отправляется в модель, которую и возвращает метод.
+     *
+     * @param page — номер страницы.
+     * @param userName — поисковый запрос.
+     * @return модель, аттрибуты которой участвуют при наполнении списка.
+     */
     @RequestMapping(value = "/")
     public ModelAndView listOfUsers(@RequestParam(required = false) Integer page, @RequestParam(required = false) String userName) {
         ModelAndView modelAndView = new ModelAndView("index");
