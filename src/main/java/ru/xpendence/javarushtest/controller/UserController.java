@@ -100,9 +100,6 @@ public class UserController {
                     users.add(tempUser);
                 }
             }
-            if (users != null) {
-                System.out.println(users.size());
-            }
         }
         PagedListHolder<User> pagedListHolder = new PagedListHolder<User>(users);
         pagedListHolder.setPageSize(10);
