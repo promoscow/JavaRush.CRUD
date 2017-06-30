@@ -249,7 +249,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="form" colspan="2">
-                                                            <form:input placeholder="Enter user name" cssClass="field" width="250px" path="name"/>
+                                                            <form:input placeholder="New user" cssClass="field" width="250px" path="name"/>
                                                         </td>
                                                     </tr>
                                                         <%--age--%>
